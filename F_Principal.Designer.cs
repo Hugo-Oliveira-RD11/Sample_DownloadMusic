@@ -40,6 +40,7 @@ namespace Sample_DownloadMusic
             this.tb_WhereSave = new System.Windows.Forms.TextBox();
             this.bgWorker_Baixar = new System.ComponentModel.BackgroundWorker();
             this.bgWorker_Converter = new System.ComponentModel.BackgroundWorker();
+            this.bgWorker_Converter_Video = new System.ComponentModel.BackgroundWorker();
             this.tabControl1.SuspendLayout();
             this.Tp_NoQueue.SuspendLayout();
             this.SuspendLayout();
@@ -50,7 +51,7 @@ namespace Sample_DownloadMusic
             this.tabControl1.Location = new System.Drawing.Point(3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(796, 448);
+            this.tabControl1.Size = new System.Drawing.Size(798, 452);
             this.tabControl1.TabIndex = 0;
             // 
             // Tp_NoQueue
@@ -65,7 +66,7 @@ namespace Sample_DownloadMusic
             this.Tp_NoQueue.Location = new System.Drawing.Point(4, 22);
             this.Tp_NoQueue.Name = "Tp_NoQueue";
             this.Tp_NoQueue.Padding = new System.Windows.Forms.Padding(3);
-            this.Tp_NoQueue.Size = new System.Drawing.Size(788, 422);
+            this.Tp_NoQueue.Size = new System.Drawing.Size(790, 426);
             this.Tp_NoQueue.TabIndex = 0;
             this.Tp_NoQueue.Text = "simples baixador";
             this.Tp_NoQueue.UseVisualStyleBackColor = true;
@@ -74,7 +75,7 @@ namespace Sample_DownloadMusic
             // 
             this.cb_willDownloadMusic.AutoSize = true;
             this.cb_willDownloadMusic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_willDownloadMusic.Location = new System.Drawing.Point(615, 384);
+            this.cb_willDownloadMusic.Location = new System.Drawing.Point(626, 403);
             this.cb_willDownloadMusic.Name = "cb_willDownloadMusic";
             this.cb_willDownloadMusic.Size = new System.Drawing.Size(122, 21);
             this.cb_willDownloadMusic.TabIndex = 6;
@@ -85,7 +86,7 @@ namespace Sample_DownloadMusic
             // 
             this.lb_Status.AutoSize = true;
             this.lb_Status.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_Status.Location = new System.Drawing.Point(7, 380);
+            this.lb_Status.Location = new System.Drawing.Point(17, 372);
             this.lb_Status.Name = "lb_Status";
             this.lb_Status.Size = new System.Drawing.Size(0, 20);
             this.lb_Status.TabIndex = 5;
@@ -98,7 +99,7 @@ namespace Sample_DownloadMusic
             this.Ltb_WhatAMusic.Location = new System.Drawing.Point(5, 145);
             this.Ltb_WhatAMusic.Name = "Ltb_WhatAMusic";
             this.Ltb_WhatAMusic.ScrollAlwaysVisible = true;
-            this.Ltb_WhatAMusic.Size = new System.Drawing.Size(776, 228);
+            this.Ltb_WhatAMusic.Size = new System.Drawing.Size(780, 196);
             this.Ltb_WhatAMusic.TabIndex = 4;
             // 
             // btn_WhatALink
@@ -154,11 +155,18 @@ namespace Sample_DownloadMusic
             this.bgWorker_Converter.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_Converter_DoWork);
             this.bgWorker_Converter.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_Converter_RunWorkerCompleted);
             // 
+            // bgWorker_Converter_Video
+            // 
+            this.bgWorker_Converter_Video.WorkerReportsProgress = true;
+            this.bgWorker_Converter_Video.WorkerSupportsCancellation = true;
+            this.bgWorker_Converter_Video.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_Converter_Video_DoWork);
+            this.bgWorker_Converter_Video.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_Converter_Video_RunWorkerCompleted);
+            // 
             // F_Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(801, 456);
             this.Controls.Add(this.tabControl1);
             this.MaximizeBox = false;
             this.Name = "F_Principal";
@@ -183,5 +191,6 @@ namespace Sample_DownloadMusic
         private System.ComponentModel.BackgroundWorker bgWorker_Baixar;
         private System.Windows.Forms.CheckBox cb_willDownloadMusic;
         private System.ComponentModel.BackgroundWorker bgWorker_Converter;
+        private System.ComponentModel.BackgroundWorker bgWorker_Converter_Video;
     }
 }

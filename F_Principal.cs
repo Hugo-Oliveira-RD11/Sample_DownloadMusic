@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -21,11 +22,13 @@ namespace Sample_DownloadMusic
         private string output ="";
         private string name1 = "";
         private string name2 = "";
+        private string name3 = "";
 
         public F_Principal()
         {
             InitializeComponent();
             cb_willDownloadMusic.Checked = true;
+
         }
 
         private void btn_WhereSave_Click(object sender, EventArgs e)
@@ -53,7 +56,7 @@ namespace Sample_DownloadMusic
             btn_WhatALink.Enabled = false;
             btn_WhereSave.Enabled = false;
             tb_WhatALink.ReadOnly = true;
-            tabControl1.Enabled = false;
+            cb_willDownloadMusic.Enabled = false;
 
             if (!String.IsNullOrWhiteSpace(tb_WhatALink.Text))
             {
@@ -84,11 +87,12 @@ namespace Sample_DownloadMusic
             }
             catch(Exception error)
             {
-                MessageBox.Show("não conseguimos baixar esse video" +
+                MessageBox.Show("não conseguimos baixar esse video \n :" +
                     error);
 
             }
         }
+        
 
         private void bgWorker_Baixar_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -97,18 +101,12 @@ namespace Sample_DownloadMusic
                 lb_Status.Text = "Convertendo...";
                 Regex re = new Regex(@"\..{1,3}");
                 name2 = Regex.Replace(name1, re.ToString(), ".mp3");
+                name3 = Regex.Replace(name1, re.ToString(), ".avi");
                 bgWorker_Converter.RunWorkerAsync();
             }
             else if(!cb_willDownloadMusic.Checked)
             {
-                lb_Status.Text = "Ja terminou!!";
-                MessageBox.Show("Terminou de baixar o seu video !!");
-                btn_WhatALink.Enabled = true;
-                btn_WhereSave.Enabled = true;
-                tb_WhatALink.ReadOnly = false;
-                tabControl1.Enabled = true;
-                Ltb_WhatAMusic.Items.Add(name1 + " - " + DateTime.Now.ToString("HH:mm  dd/MM"));
-                lb_Status.Text = "Terminou!";
+                bgWorker_Converter_Video.RunWorkerAsync();
 
             }
 
@@ -116,8 +114,8 @@ namespace Sample_DownloadMusic
 
         private void bgWorker_Converter_DoWork(object sender, DoWorkEventArgs e)
         {
-            var inputFile = new MediaFile { Filename = output + name1 };
-            var outputFile = new MediaFile { Filename = output + name2 };
+            var inputFile = new MediaFile { Filename = output + @"\" + name1 };
+            var outputFile = new MediaFile { Filename = output + @"\"+ name2 };
             using (var engine = new Engine())
             {
                 engine.Convert(inputFile, outputFile);
@@ -129,24 +127,60 @@ namespace Sample_DownloadMusic
         {
             try
             {
-                File.Delete(output + name1);
+                File.Delete(output + @"\" + name1);
+                MessageBox.Show("terminou de baixar e converter a sua musica!!");
                 btn_WhatALink.Enabled = true;
                 btn_WhereSave.Enabled = true;
                 tb_WhatALink.ReadOnly = false;
-                tabControl1.Enabled = true;
-                Ltb_WhatAMusic.Items.Add(name1 + " - " + DateTime.Now.ToString("HH:mm  dd/MM"));
+                cb_willDownloadMusic.Enabled = true;
+                Ltb_WhatAMusic.Items.Add(name2 + " - " + DateTime.Now.ToString("HH:mm  dd/MM"));
                 lb_Status.Text = "Terminou!";
-                MessageBox.Show("terminou de baixar e converter a sua musica!!");
             }catch
             {
                 btn_WhatALink.Enabled = true;
                 btn_WhereSave.Enabled = true;
                 tb_WhatALink.ReadOnly = false;
-                tabControl1.Enabled = true;
+                cb_willDownloadMusic.Enabled = true;
                 MessageBox.Show("A musica foi baixada, mas não conseguimos deletar o video, então eu pesso ao senhor para deletar a o video que o nome dele é " + name1);
                 lb_Status.Text = "Baixou, mas não conseguimos deletar, peço que delete esse video que foi baixado!!";
                  
             }
+        }
+
+        private void bgWorker_Converter_Video_DoWork(object sender, DoWorkEventArgs e)
+        {
+            var inputFile = new MediaFile { Filename = output + @"\" + name1};
+            var outputFile = new MediaFile { Filename = output + @"\" + name3 };
+            using (var engine = new Engine())
+            {
+                engine.Convert(inputFile, outputFile);
+            }
+        }
+
+        private void bgWorker_Converter_Video_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            try
+            { 
+                File.Delete(output + @"\" + name1);
+                MessageBox.Show("Terminou de baixar o seu video !!");
+                btn_WhatALink.Enabled = true;
+                btn_WhereSave.Enabled = true;
+                tb_WhatALink.ReadOnly = false;
+                cb_willDownloadMusic.Enabled = true;
+                Ltb_WhatAMusic.Items.Add(name3 + " - " + DateTime.Now.ToString("HH:mm  dd/MM"));
+                lb_Status.Text = "Terminou!";
+            }
+            catch
+            {
+                btn_WhatALink.Enabled = true;
+                btn_WhereSave.Enabled = true;
+                tb_WhatALink.ReadOnly = false;
+                cb_willDownloadMusic.Enabled = true;
+                MessageBox.Show("A musica foi baixada, mas não conseguimos deletar o video, então eu pesso ao senhor para deletar a o video que o nome dele é " + name1);
+                lb_Status.Text = "Baixou, mas não conseguimos deletar, peço que delete esse video que foi baixado!!";
+
+            }
+
         }
     }
 }
