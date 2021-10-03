@@ -38,28 +38,15 @@ namespace Sample_DownloadMusic
             this.tb_WhatALink = new System.Windows.Forms.TextBox();
             this.btn_WhereSave = new System.Windows.Forms.Button();
             this.tb_WhereSave = new System.Windows.Forms.TextBox();
-            this.Tp_withQueue = new System.Windows.Forms.TabPage();
-            this.lb_StatusMusic = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btn_AddLink = new System.Windows.Forms.Button();
-            this.btn_WhereASave2 = new System.Windows.Forms.Button();
-            this.tb_WhatALink2 = new System.Windows.Forms.TextBox();
-            this.tb_WhereASave2 = new System.Windows.Forms.TextBox();
-            this.Ltb_WhatASave = new System.Windows.Forms.ListBox();
-            this.Ltb_WhatWillASave = new System.Windows.Forms.ListBox();
             this.bgWorker_Baixar = new System.ComponentModel.BackgroundWorker();
             this.bgWorker_Converter = new System.ComponentModel.BackgroundWorker();
-            this.btn_Baixar = new System.Windows.Forms.Button();
-            this.bgWorker_baixarLista = new System.ComponentModel.BackgroundWorker();
             this.tabControl1.SuspendLayout();
             this.Tp_NoQueue.SuspendLayout();
-            this.Tp_withQueue.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.Tp_NoQueue);
-            this.tabControl1.Controls.Add(this.Tp_withQueue);
             this.tabControl1.Location = new System.Drawing.Point(3, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -153,98 +140,6 @@ namespace Sample_DownloadMusic
             this.tb_WhereSave.Size = new System.Drawing.Size(570, 26);
             this.tb_WhereSave.TabIndex = 0;
             // 
-            // Tp_withQueue
-            // 
-            this.Tp_withQueue.Controls.Add(this.btn_Baixar);
-            this.Tp_withQueue.Controls.Add(this.lb_StatusMusic);
-            this.Tp_withQueue.Controls.Add(this.label1);
-            this.Tp_withQueue.Controls.Add(this.btn_AddLink);
-            this.Tp_withQueue.Controls.Add(this.btn_WhereASave2);
-            this.Tp_withQueue.Controls.Add(this.tb_WhatALink2);
-            this.Tp_withQueue.Controls.Add(this.tb_WhereASave2);
-            this.Tp_withQueue.Controls.Add(this.Ltb_WhatASave);
-            this.Tp_withQueue.Controls.Add(this.Ltb_WhatWillASave);
-            this.Tp_withQueue.Location = new System.Drawing.Point(4, 22);
-            this.Tp_withQueue.Name = "Tp_withQueue";
-            this.Tp_withQueue.Padding = new System.Windows.Forms.Padding(3);
-            this.Tp_withQueue.Size = new System.Drawing.Size(788, 422);
-            this.Tp_withQueue.TabIndex = 1;
-            this.Tp_withQueue.Text = "baixador com fila";
-            this.Tp_withQueue.UseVisualStyleBackColor = true;
-            // 
-            // lb_StatusMusic
-            // 
-            this.lb_StatusMusic.AutoSize = true;
-            this.lb_StatusMusic.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lb_StatusMusic.Location = new System.Drawing.Point(252, 370);
-            this.lb_StatusMusic.Name = "lb_StatusMusic";
-            this.lb_StatusMusic.Size = new System.Drawing.Size(236, 20);
-            this.lb_StatusMusic.TabIndex = 7;
-            this.lb_StatusMusic.Text = "Aqui vai em qual passo estamos";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(252, 323);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(197, 20);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Aqui vai o nome da musica";
-            // 
-            // btn_AddLink
-            // 
-            this.btn_AddLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_AddLink.Location = new System.Drawing.Point(306, 214);
-            this.btn_AddLink.Name = "btn_AddLink";
-            this.btn_AddLink.Size = new System.Drawing.Size(167, 31);
-            this.btn_AddLink.TabIndex = 5;
-            this.btn_AddLink.Text = "Adicionar a Lista";
-            this.btn_AddLink.UseVisualStyleBackColor = true;
-            this.btn_AddLink.Click += new System.EventHandler(this.btn_AddToList_Click);
-            // 
-            // btn_WhereASave2
-            // 
-            this.btn_WhereASave2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_WhereASave2.Location = new System.Drawing.Point(306, 47);
-            this.btn_WhereASave2.Name = "btn_WhereASave2";
-            this.btn_WhereASave2.Size = new System.Drawing.Size(167, 30);
-            this.btn_WhereASave2.TabIndex = 4;
-            this.btn_WhereASave2.Text = "Onde vai Baixar";
-            this.btn_WhereASave2.UseVisualStyleBackColor = true;
-            this.btn_WhereASave2.Click += new System.EventHandler(this.btn_WhereASave2_Click);
-            // 
-            // tb_WhatALink2
-            // 
-            this.tb_WhatALink2.Location = new System.Drawing.Point(256, 188);
-            this.tb_WhatALink2.Name = "tb_WhatALink2";
-            this.tb_WhatALink2.Size = new System.Drawing.Size(274, 20);
-            this.tb_WhatALink2.TabIndex = 3;
-            // 
-            // tb_WhereASave2
-            // 
-            this.tb_WhereASave2.Location = new System.Drawing.Point(256, 7);
-            this.tb_WhereASave2.Name = "tb_WhereASave2";
-            this.tb_WhereASave2.ReadOnly = true;
-            this.tb_WhereASave2.Size = new System.Drawing.Size(274, 20);
-            this.tb_WhereASave2.TabIndex = 2;
-            // 
-            // Ltb_WhatASave
-            // 
-            this.Ltb_WhatASave.FormattingEnabled = true;
-            this.Ltb_WhatASave.Location = new System.Drawing.Point(548, 7);
-            this.Ltb_WhatASave.Name = "Ltb_WhatASave";
-            this.Ltb_WhatASave.Size = new System.Drawing.Size(234, 407);
-            this.Ltb_WhatASave.TabIndex = 1;
-            // 
-            // Ltb_WhatWillASave
-            // 
-            this.Ltb_WhatWillASave.FormattingEnabled = true;
-            this.Ltb_WhatWillASave.Location = new System.Drawing.Point(4, 7);
-            this.Ltb_WhatWillASave.Name = "Ltb_WhatWillASave";
-            this.Ltb_WhatWillASave.Size = new System.Drawing.Size(234, 407);
-            this.Ltb_WhatWillASave.TabIndex = 0;
-            // 
             // bgWorker_Baixar
             // 
             this.bgWorker_Baixar.WorkerReportsProgress = true;
@@ -259,24 +154,6 @@ namespace Sample_DownloadMusic
             this.bgWorker_Converter.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_Converter_DoWork);
             this.bgWorker_Converter.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_Converter_RunWorkerCompleted);
             // 
-            // btn_Baixar
-            // 
-            this.btn_Baixar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Baixar.Location = new System.Drawing.Point(338, 266);
-            this.btn_Baixar.Name = "btn_Baixar";
-            this.btn_Baixar.Size = new System.Drawing.Size(88, 28);
-            this.btn_Baixar.TabIndex = 8;
-            this.btn_Baixar.Text = "Baixar";
-            this.btn_Baixar.UseVisualStyleBackColor = true;
-            this.btn_Baixar.Click += new System.EventHandler(this.btn_Baixar_Click);
-            // 
-            // bgWorker_baixarLista
-            // 
-            this.bgWorker_baixarLista.WorkerReportsProgress = true;
-            this.bgWorker_baixarLista.WorkerSupportsCancellation = true;
-            this.bgWorker_baixarLista.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorker_baixarLista_DoWork);
-            this.bgWorker_baixarLista.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_baixarLista_RunWorkerCompleted);
-            // 
             // F_Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -289,8 +166,6 @@ namespace Sample_DownloadMusic
             this.tabControl1.ResumeLayout(false);
             this.Tp_NoQueue.ResumeLayout(false);
             this.Tp_NoQueue.PerformLayout();
-            this.Tp_withQueue.ResumeLayout(false);
-            this.Tp_withQueue.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -299,25 +174,14 @@ namespace Sample_DownloadMusic
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage Tp_NoQueue;
-        private System.Windows.Forms.TabPage Tp_withQueue;
         private System.Windows.Forms.Button btn_WhereSave;
         private System.Windows.Forms.TextBox tb_WhereSave;
         private System.Windows.Forms.ListBox Ltb_WhatAMusic;
         private System.Windows.Forms.Button btn_WhatALink;
         private System.Windows.Forms.TextBox tb_WhatALink;
-        private System.Windows.Forms.Button btn_AddLink;
-        private System.Windows.Forms.Button btn_WhereASave2;
-        private System.Windows.Forms.TextBox tb_WhatALink2;
-        private System.Windows.Forms.TextBox tb_WhereASave2;
-        private System.Windows.Forms.ListBox Ltb_WhatASave;
-        private System.Windows.Forms.ListBox Ltb_WhatWillASave;
         private System.Windows.Forms.Label lb_Status;
-        private System.Windows.Forms.Label lb_StatusMusic;
-        private System.Windows.Forms.Label label1;
         private System.ComponentModel.BackgroundWorker bgWorker_Baixar;
         private System.Windows.Forms.CheckBox cb_willDownloadMusic;
         private System.ComponentModel.BackgroundWorker bgWorker_Converter;
-        private System.Windows.Forms.Button btn_Baixar;
-        private System.ComponentModel.BackgroundWorker bgWorker_baixarLista;
     }
 }
