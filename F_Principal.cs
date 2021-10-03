@@ -23,6 +23,7 @@ namespace Sample_DownloadMusic
         private string name1 = "";
         private string name2 = "";
         private string name3 = "";
+        private Regex re = new Regex(@"\..{1,3}");
 
         public F_Principal()
         {
@@ -99,13 +100,15 @@ namespace Sample_DownloadMusic
             if (cb_willDownloadMusic.Checked)
             {
                 lb_Status.Text = "Convertendo...";
-                Regex re = new Regex(@"\..{1,3}");
+                
                 name2 = Regex.Replace(name1, re.ToString(), ".mp3");
-                name3 = Regex.Replace(name1, re.ToString(), ".avi");
                 bgWorker_Converter.RunWorkerAsync();
             }
             else if(!cb_willDownloadMusic.Checked)
             {
+                lb_Status.Text = "Convertendo...";
+
+                name3 = Regex.Replace(name1, re.ToString(), ".avi");
                 bgWorker_Converter_Video.RunWorkerAsync();
 
             }
